@@ -474,8 +474,10 @@
             removeBtn.className = 'remove-btn';
             removeBtn.innerHTML = '&times;';
             removeBtn.dataset.playerName = name;
-            removeBtn.onclick = function(e) {
+
+            const removeFielder = function(e) {
                 e.stopPropagation();
+                e.preventDefault();
                 // Mark list item as unused if player exists in list
                 const playerListItem = document.querySelector(`[data-player-name="${name}"]`);
                 if (playerListItem) {
@@ -483,6 +485,9 @@
                 }
                 fielder.remove();
             };
+
+            removeBtn.addEventListener('click', removeFielder);
+            removeBtn.addEventListener('touchstart', removeFielder, {passive: false});
 
             fielder.appendChild(nameSpan);
             fielder.appendChild(removeBtn);
@@ -543,6 +548,11 @@
                 return;
             }
 
+            // Check if the touch/click is on the remove button
+            if (e.target.classList.contains('remove-btn') || e.target.closest('.remove-btn')) {
+                return; // Don't start dragging if clicking remove button
+            }
+
             e.preventDefault();
 
             // Create a new fielder on the field
@@ -557,8 +567,10 @@
             const removeBtn = document.createElement('button');
             removeBtn.className = 'remove-btn';
             removeBtn.innerHTML = '&times;';
-            removeBtn.onclick = function(e) {
+
+            const removeFielder = function(e) {
                 e.stopPropagation();
+                e.preventDefault();
                 // Mark list item as unused
                 const playerName = listItem.dataset.playerName;
                 const playerListItem = document.querySelector(`[data-player-name="${playerName}"]`);
@@ -567,6 +579,9 @@
                 }
                 fielder.remove();
             };
+
+            removeBtn.addEventListener('click', removeFielder);
+            removeBtn.addEventListener('touchstart', removeFielder, {passive: false});
 
             fielder.appendChild(nameSpan);
             fielder.appendChild(removeBtn);
@@ -606,6 +621,11 @@
 
         // Drag functions
         function startDrag(e) {
+            // Check if the touch/click is on the remove button
+            if (e.target.classList.contains('remove-btn') || e.target.closest('.remove-btn')) {
+                return; // Don't start dragging if clicking remove button
+            }
+
             e.preventDefault();
             draggedElement = this;
             draggedElement.classList.add('dragging');
