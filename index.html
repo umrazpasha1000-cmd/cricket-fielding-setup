@@ -428,9 +428,9 @@
 
         // Default players list
         const defaultPlayers = [
-            'Umraz', 'Asif', 'Siraj', 'Chand Bhai', 'Chandu bhayya',
-            'Mujju', 'Shoib', 'Yarab', 'Mansoor', 'Sadiq',
-            'Salman', 'Afroz', 'Jilan'
+            'IMRAN', 'ROSHAN', 'KULLU', 'AMANULLA', 'ALEEM',
+            'SHAMSHEER', 'GORU', 'CHANDAN', 'IRFAN', 'YUSUF',
+            'SHAFU', 'SIRAJ', 'JAI KUMAR', 'ALTAF', 'JILAN'
         ];
 
         // Initialize players list
@@ -473,8 +473,14 @@
             const removeBtn = document.createElement('button');
             removeBtn.className = 'remove-btn';
             removeBtn.innerHTML = '&times;';
+            removeBtn.dataset.playerName = name;
             removeBtn.onclick = function(e) {
                 e.stopPropagation();
+                // Mark list item as unused if player exists in list
+                const playerListItem = document.querySelector(`[data-player-name="${name}"]`);
+                if (playerListItem) {
+                    playerListItem.classList.remove('used');
+                }
                 fielder.remove();
             };
 
@@ -554,7 +560,11 @@
             removeBtn.onclick = function(e) {
                 e.stopPropagation();
                 // Mark list item as unused
-                listItem.classList.remove('used');
+                const playerName = listItem.dataset.playerName;
+                const playerListItem = document.querySelector(`[data-player-name="${playerName}"]`);
+                if (playerListItem) {
+                    playerListItem.classList.remove('used');
+                }
                 fielder.remove();
             };
 
