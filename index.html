@@ -197,7 +197,6 @@
             background-color: #d4a574;
             border: 2px solid #8b6f47;
             border-radius: 2px;
-            z-index: 10;
             pointer-events: none;
         }
 
@@ -874,21 +873,7 @@
                     const nameSpan = document.createElement('span');
                     nameSpan.textContent = playerName;
 
-                    const removeBtn = document.createElement('button');
-                    removeBtn.className = 'remove-btn';
-                    removeBtn.innerHTML = '&times;';
-
-                    const removeFielder = function(e) {
-                        e.stopPropagation();
-                        e.preventDefault();
-                        fielder.remove();
-                    };
-
-                    removeBtn.addEventListener('click', removeFielder);
-                    removeBtn.addEventListener('touchstart', removeFielder, {passive: false});
-
                     fielder.appendChild(nameSpan);
-                    fielder.appendChild(removeBtn);
 
                     // Position players in a circle - start from top (270 degrees) and go clockwise
                     const angle = (Math.PI * 1.5) + (index / selectedPlayers.length) * 2 * Math.PI;
