@@ -177,6 +177,8 @@
             height: 42.86%;
             border: 3px dashed rgba(255, 255, 255, 0.7);
             border-radius: 50%;
+            z-index: 5;
+            pointer-events: none;
         }
 
         @media (max-width: 768px) {
@@ -195,6 +197,8 @@
             background-color: #d4a574;
             border: 2px solid #8b6f47;
             border-radius: 2px;
+            z-index: 10;
+            pointer-events: none;
         }
 
         @media (max-width: 768px) {
@@ -267,7 +271,8 @@
             height: 10px;
             background-color: white;
             border-radius: 50%;
-            z-index: 0;
+            z-index: 10;
+            pointer-events: none;
         }
 
         .label {
@@ -293,6 +298,8 @@
             border-radius: 20px;
             left: 50%;
             transform: translateX(-50%);
+            z-index: 10;
+            pointer-events: none;
         }
 
         @media (max-width: 768px) {
@@ -330,6 +337,26 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
             min-width: 200px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .players-list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .players-list::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .players-list::-webkit-scrollbar-thumb {
+            background: #2d7a4d;
+            border-radius: 4px;
+        }
+
+        .players-list::-webkit-scrollbar-thumb:hover {
+            background: #1a472a;
         }
 
         .players-list h3 {
@@ -338,6 +365,24 @@
             color: #1a472a;
             border-bottom: 2px solid #2d7a4d;
             padding-bottom: 8px;
+        }
+
+        #teamSelect {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 2px solid #2d7a4d;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #1a472a;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        #teamSelect:focus {
+            outline: none;
+            border-color: #1a472a;
         }
 
         .player-item {
@@ -365,18 +410,260 @@
             cursor: not-allowed;
         }
 
+        /* Mobile Team Selection Screen */
+        .mobile-team-selection {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .mobile-team-selection h2 {
+            color: #1a472a;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        #mobileTeamSelect {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #2d7a4d;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: bold;
+            color: #1a472a;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        #mobileTeamSelect:focus {
+            outline: none;
+            border-color: #1a472a;
+        }
+
+        .mobile-team-selection .selected-count {
+            text-align: center;
+            color: #2d7a4d;
+            font-weight: bold;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .mobile-player-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin: 15px 0;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .mobile-player-item {
+            background-color: #f0f0f0;
+            color: #1a472a;
+            padding: 12px 6px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .mobile-player-item.selected {
+            background-color: #ff6b35;
+            color: white;
+            border-color: #ff6b35;
+        }
+
+        .mobile-player-item:active {
+            transform: scale(0.95);
+        }
+
+        .proceed-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #2d7a4d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .proceed-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .back-to-selection-btn {
+            display: none;
+            width: 100%;
+            max-width: 300px;
+            padding: 10px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px auto;
+        }
+
+        .back-to-selection-btn.visible {
+            display: block;
+        }
+
+        .mobile-swap-btn {
+            display: none;
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .mobile-swap-btn.visible {
+            display: block;
+        }
+
         @media (max-width: 768px) {
+            body {
+                padding: 0;
+            }
+
+            h1 {
+                font-size: 20px;
+                margin-bottom: 5px;
+                padding: 10px;
+            }
+
             .players-list {
                 width: 100%;
+                max-height: 200px;
+                padding: 12px;
             }
 
             .players-list h3 {
                 font-size: 16px;
+                margin-bottom: 8px;
+            }
+
+            #playersList {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 6px;
             }
 
             .player-item {
-                font-size: 12px;
-                padding: 6px 10px;
+                font-size: 11px;
+                padding: 8px 4px;
+                text-align: center;
+                margin-bottom: 0;
+            }
+
+            #teamSelect {
+                font-size: 13px;
+                padding: 6px;
+                margin-bottom: 10px;
+            }
+
+            /* Show mobile selection, hide field initially */
+            .mobile-team-selection {
+                display: block;
+            }
+
+            .main-container {
+                display: none;
+            }
+
+            .main-container.show-field {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                padding: 0;
+            }
+
+            .mobile-team-selection.hidden {
+                display: none;
+            }
+
+            /* Hide controls and player list on mobile */
+            .left-section {
+                display: none;
+            }
+
+            .controls {
+                display: none;
+            }
+
+            .info {
+                display: none;
+            }
+
+            .right-section {
+                width: 100%;
+                padding: 0;
+            }
+
+            .field-container {
+                width: 100vw !important;
+                height: 100vw !important;
+                max-width: 100vw !important;
+                max-height: 100vw !important;
+                margin: 0;
+            }
+
+            .mobile-player-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .back-to-selection-btn {
+                margin: 5px auto;
+                position: fixed;
+                top: 5px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 100;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #playersList {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .player-item {
+                font-size: 10px;
+                padding: 7px 3px;
+            }
+
+            .mobile-player-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .mobile-player-item {
+                font-size: 11px;
+                padding: 10px 4px;
             }
         }
     </style>
@@ -384,10 +671,48 @@
 <body>
     <h1>Cricket Fielding Positions</h1>
 
+    <!-- Mobile Team Selection Screen -->
+    <div class="mobile-team-selection" id="mobileSelection">
+        <h2>Select Team & Playing 11</h2>
+
+        <select id="mobileTeamSelect" onchange="loadMobilePlayers(this.value)">
+            <option value="DECCAN FIGHTERS">DECCAN FIGHTERS</option>
+            <option value="TIPPU FIGHTERS">TIPPU FIGHTERS</option>
+            <option value="ROYAL SULTHANS">ROYAL SULTHANS</option>
+            <option value="SULTHANS STRIKERS">SULTHANS STRIKERS</option>
+            <option value="ROYAL TITANS">ROYAL TITANS</option>
+        </select>
+
+        <div class="selected-count">
+            Selected: <span id="selectedCount">0</span>/11
+        </div>
+
+        <div class="mobile-player-grid" id="mobilePlayerGrid"></div>
+
+        <button class="proceed-btn" id="proceedBtn" onclick="proceedToField()" disabled>
+            Proceed to Field Setup
+        </button>
+    </div>
+
+    <button class="back-to-selection-btn" id="backBtn" onclick="backToSelection()">
+        ← Change Team/Players
+    </button>
+
+    <button class="mobile-swap-btn" id="mobileSwapBtn" onclick="swapEnds()">
+        ⇅ Swap Ends
+    </button>
+
     <div class="main-container">
         <div class="left-section">
             <div class="players-list">
                 <h3>Players</h3>
+                <select id="teamSelect" onchange="changeTeam(this.value)">
+                    <option value="DECCAN FIGHTERS">DECCAN FIGHTERS</option>
+                    <option value="TIPPU FIGHTERS">TIPPU FIGHTERS</option>
+                    <option value="ROYAL SULTHANS">ROYAL SULTHANS</option>
+                    <option value="SULTHANS STRIKERS">SULTHANS STRIKERS</option>
+                    <option value="ROYAL TITANS">ROYAL TITANS</option>
+                </select>
                 <div id="playersList"></div>
             </div>
         </div>
@@ -426,16 +751,179 @@
         let fielderCount = 0;
         let endsSwapped = false;
 
-        // Default players list
-        const defaultPlayers = [
-            'IMRAN', 'ROSHAN', 'KULLU', 'AMANULLA', 'ALEEM',
-            'SHAMSHEER', 'GORU', 'CHANDAN', 'IRFAN', 'YUSUF',
-            'SHAFU', 'SIRAJ', 'JAI KUMAR', 'ALTAF', 'JILAN'
-        ];
+        // Teams data
+        const teamsData = {
+            'DECCAN FIGHTERS': [
+                'IMRAN K', 'ROSHAN', 'KULLU', 'AMANULLA', 'ALEEM',
+                'SHAMSHEER', 'GORU', 'CHANDAN', 'IRFAN', 'YUSUF',
+                'SHAFU', 'SIRAJ', 'JAI KUMAR', 'ALTAF', 'JILAN'
+            ],
+            'TIPPU FIGHTERS': [
+                'FIRDOS', 'ANJUM', 'SYED KAZIM', 'INJUMAM ULLAK', 'SYED KAIF',
+                'YAKEEN', 'IMRAN T', 'UMRAZ', 'YARAB', 'WASIM',
+                'AFROZ', 'SAAD', 'RIZWAN PASHA', 'SYED JUNAID', 'ZAMEER'
+            ],
+            'ROYAL SULTHANS': [
+                'FAYAZ', 'MUJJU', 'SYED NIZAM', 'DHARMA', 'MANJU G',
+                'PARVEEZ', 'IMRAN B', 'NITHIN', 'MANJA BULLET', 'SYED KHAJA',
+                'TALIB', 'TANNU', 'AMAR GOWDA', 'SYED NAVEED', 'SYED HARIS', 'SALMAN'
+            ],
+            'SULTHANS STRIKERS': [
+                'SADIQ', 'CHAND BHAI', 'UMRAZ', 'KHALANDAR', 'MUZAMMIL',
+                'CHAND PASHA M', 'NIZAM BT', 'SHOIB', 'SYED DOULATH', 'AFNAN',
+                'AZHAR', 'ZABI', 'MANSOOR BAIG', 'ANAND ANNA', 'BABAR'
+            ],
+            'ROYAL TITANS': [
+                'MOHSIN', 'SACHIN', 'SALIM', 'TABREZ', 'MANSOOR PASHA',
+                'NAYAZ', 'ADDU', 'FAKRU', 'YASEEN', 'RAZBI',
+                'SHABAZ', 'FAIZ', 'ASIF', 'RIYAZ', 'ZABI CHIT'
+            ]
+        };
+
+        let currentTeam = 'DECCAN FIGHTERS';
+        let defaultPlayers = teamsData[currentTeam];
+        let selectedPlayers = [];
+
+        // Mobile selection functions
+        function loadMobilePlayers(teamName) {
+            currentTeam = teamName;
+            selectedPlayers = [];
+
+            const grid = document.getElementById('mobilePlayerGrid');
+            grid.innerHTML = '';
+
+            teamsData[teamName].forEach((playerName, index) => {
+                const playerDiv = document.createElement('div');
+                playerDiv.className = 'mobile-player-item';
+                playerDiv.textContent = playerName;
+
+                // Auto-select first 11 players
+                if (index < 11) {
+                    playerDiv.classList.add('selected');
+                    selectedPlayers.push(playerName);
+                }
+
+                playerDiv.onclick = function() {
+                    togglePlayerSelection(playerName, playerDiv);
+                };
+                grid.appendChild(playerDiv);
+            });
+
+            updateSelectedCount();
+        }
+
+        function togglePlayerSelection(playerName, element) {
+            const index = selectedPlayers.indexOf(playerName);
+
+            if (index > -1) {
+                // Deselect
+                selectedPlayers.splice(index, 1);
+                element.classList.remove('selected');
+            } else {
+                // Select (only if less than 11)
+                if (selectedPlayers.length < 11) {
+                    selectedPlayers.push(playerName);
+                    element.classList.add('selected');
+                }
+            }
+
+            updateSelectedCount();
+        }
+
+        function updateSelectedCount() {
+            document.getElementById('selectedCount').textContent = selectedPlayers.length;
+            const proceedBtn = document.getElementById('proceedBtn');
+            proceedBtn.disabled = selectedPlayers.length !== 11;
+        }
+
+        function proceedToField() {
+            // Update the default players to only selected ones
+            defaultPlayers = selectedPlayers;
+
+            // Hide mobile selection, show field
+            document.getElementById('mobileSelection').classList.add('hidden');
+            document.querySelector('.main-container').classList.add('show-field');
+            document.getElementById('backBtn').classList.add('visible');
+            document.getElementById('mobileSwapBtn').classList.add('visible');
+
+            // Update the desktop team selector
+            document.getElementById('teamSelect').value = currentTeam;
+
+            // Auto-place all selected players on the field for mobile
+            setTimeout(() => {
+                const fieldContainer = document.getElementById('fieldContainer');
+                const containerRect = fieldContainer.getBoundingClientRect();
+                const radius = (containerRect.width / 2) * 0.75; // 75% of radius
+                const centerX = containerRect.width / 2;
+                const centerY = containerRect.height / 2;
+
+                selectedPlayers.forEach((playerName, index) => {
+                    const fielder = document.createElement('div');
+                    fielder.className = 'fielder';
+                    fielder.id = 'fielder-' + fielderCount++;
+
+                    const nameSpan = document.createElement('span');
+                    nameSpan.textContent = playerName;
+
+                    const removeBtn = document.createElement('button');
+                    removeBtn.className = 'remove-btn';
+                    removeBtn.innerHTML = '&times;';
+
+                    const removeFielder = function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        fielder.remove();
+                    };
+
+                    removeBtn.addEventListener('click', removeFielder);
+                    removeBtn.addEventListener('touchstart', removeFielder, {passive: false});
+
+                    fielder.appendChild(nameSpan);
+                    fielder.appendChild(removeBtn);
+
+                    // Position players in a circle - start from top (270 degrees) and go clockwise
+                    const angle = (Math.PI * 1.5) + (index / selectedPlayers.length) * 2 * Math.PI;
+                    const x = centerX + radius * Math.cos(angle);
+                    const y = centerY + radius * Math.sin(angle);
+
+                    fielder.style.left = x + 'px';
+                    fielder.style.top = y + 'px';
+                    fielder.style.transform = 'translate(-50%, -50%)';
+
+                    // Add drag event listeners
+                    fielder.addEventListener('mousedown', startDrag);
+                    fielder.addEventListener('touchstart', startDrag);
+
+                    fieldContainer.appendChild(fielder);
+                });
+            }, 100); // Small delay to ensure container is rendered
+        }
+
+        function backToSelection() {
+            // Clear all fielders from the field
+            const fielders = document.querySelectorAll('.fielder');
+            fielders.forEach(fielder => fielder.remove());
+
+            // Show mobile selection, hide field
+            document.getElementById('mobileSelection').classList.remove('hidden');
+            document.querySelector('.main-container').classList.remove('show-field');
+            document.getElementById('backBtn').classList.remove('visible');
+            document.getElementById('mobileSwapBtn').classList.remove('visible');
+        }
+
+        // Initialize mobile view on load
+        window.addEventListener('DOMContentLoaded', function() {
+            if (window.innerWidth <= 768) {
+                loadMobilePlayers('DECCAN FIGHTERS');
+            } else {
+                initPlayersList();
+            }
+        });
 
         // Initialize players list
         function initPlayersList() {
             const playersList = document.getElementById('playersList');
+            playersList.innerHTML = ''; // Clear existing players
             defaultPlayers.forEach(playerName => {
                 const playerItem = document.createElement('div');
                 playerItem.className = 'player-item';
@@ -447,8 +935,18 @@
             });
         }
 
-        // Call init on page load
-        window.addEventListener('DOMContentLoaded', initPlayersList);
+        // Change team
+        function changeTeam(teamName) {
+            currentTeam = teamName;
+            defaultPlayers = teamsData[teamName];
+
+            // Clear all fielders from the field
+            const fielders = document.querySelectorAll('.fielder');
+            fielders.forEach(fielder => fielder.remove());
+
+            // Reload players list
+            initPlayersList();
+        }
 
         // Add fielder function
         function addFielder() {
