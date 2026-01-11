@@ -312,8 +312,8 @@
 
         @media (max-width: 768px) {
             .end-label {
-                font-size: 13px;
-                padding: 6px 12px;
+                font-size: 11px;
+                padding: 4px 10px;
             }
         }
 
@@ -323,6 +323,16 @@
 
         .keeper-end {
             top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .bowler-end {
+                bottom: -35px;
+            }
+
+            .keeper-end {
+                top: -35px;
+            }
         }
 
         .info {
@@ -638,7 +648,11 @@
                 height: 100vw !important;
                 max-width: 100vw !important;
                 max-height: 100vw !important;
-                margin: 0;
+                margin: 40px 0 0 0;
+            }
+
+            .label-30yard {
+                display: none;
             }
 
             .mobile-player-grid {
@@ -1013,21 +1027,36 @@
             endsSwapped = !endsSwapped;
             const bowlerLabel = document.querySelector('.bowler-end');
             const keeperLabel = document.querySelector('.keeper-end');
+            const isMobile = window.innerWidth <= 768;
 
             if (endsSwapped) {
                 bowlerLabel.textContent = 'Bowler End';
                 keeperLabel.textContent = 'Keeper End';
-                bowlerLabel.style.top = '10px';
-                bowlerLabel.style.bottom = 'auto';
-                keeperLabel.style.bottom = '10px';
-                keeperLabel.style.top = 'auto';
+                if (isMobile) {
+                    bowlerLabel.style.top = '-35px';
+                    bowlerLabel.style.bottom = 'auto';
+                    keeperLabel.style.bottom = '-35px';
+                    keeperLabel.style.top = 'auto';
+                } else {
+                    bowlerLabel.style.top = '10px';
+                    bowlerLabel.style.bottom = 'auto';
+                    keeperLabel.style.bottom = '10px';
+                    keeperLabel.style.top = 'auto';
+                }
             } else {
                 bowlerLabel.textContent = 'Bowler End';
                 keeperLabel.textContent = 'Keeper End';
-                bowlerLabel.style.bottom = '10px';
-                bowlerLabel.style.top = 'auto';
-                keeperLabel.style.top = '10px';
-                keeperLabel.style.bottom = 'auto';
+                if (isMobile) {
+                    bowlerLabel.style.bottom = '-35px';
+                    bowlerLabel.style.top = 'auto';
+                    keeperLabel.style.top = '-35px';
+                    keeperLabel.style.bottom = 'auto';
+                } else {
+                    bowlerLabel.style.bottom = '10px';
+                    bowlerLabel.style.top = 'auto';
+                    keeperLabel.style.top = '10px';
+                    keeperLabel.style.bottom = 'auto';
+                }
             }
         }
 
