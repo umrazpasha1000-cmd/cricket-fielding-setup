@@ -699,11 +699,11 @@
         <h2>Select Team & Playing 11</h2>
 
         <select id="mobileTeamSelect" onchange="loadMobilePlayers(this.value)">
-            <option value="DECCAN FIGHTERS">DECCAN FIGHTERS</option>
-            <option value="TIPPU FIGHTERS">TIPPU FIGHTERS</option>
-            <option value="ROYAL SULTHANS">ROYAL SULTHANS</option>
-            <option value="SULTHANS STRIKERS">SULTHANS STRIKERS</option>
             <option value="ROYAL TITANS">ROYAL TITANS</option>
+            <option value="ROYAL SULTHANS">ROYAL SULTHANS</option>
+            <option value="TIPPU FIGHTERS">TIPPU FIGHTERS</option>
+            <option value="DECCAN FIGHTERS">DECCAN FIGHTERS</option>
+            <option value="SULTHANS STRIKERS">SULTHANS STRIKERS</option>
         </select>
 
         <div class="selected-count">
@@ -730,11 +730,11 @@
             <div class="players-list">
                 <h3>Players</h3>
                 <select id="teamSelect" onchange="changeTeam(this.value)">
-                    <option value="DECCAN FIGHTERS">DECCAN FIGHTERS</option>
-                    <option value="TIPPU FIGHTERS">TIPPU FIGHTERS</option>
-                    <option value="ROYAL SULTHANS">ROYAL SULTHANS</option>
-                    <option value="SULTHANS STRIKERS">SULTHANS STRIKERS</option>
                     <option value="ROYAL TITANS">ROYAL TITANS</option>
+                    <option value="ROYAL SULTHANS">ROYAL SULTHANS</option>
+                    <option value="TIPPU FIGHTERS">TIPPU FIGHTERS</option>
+                    <option value="DECCAN FIGHTERS">DECCAN FIGHTERS</option>
+                    <option value="SULTHANS STRIKERS">SULTHANS STRIKERS</option>
                 </select>
                 <div id="playersList"></div>
             </div>
@@ -776,34 +776,34 @@
 
         // Teams data
         const teamsData = {
-            'DECCAN FIGHTERS': [
-                'IMRAN K', 'ROSHAN', 'KULLU', 'AMANULLA', 'ALEEM',
-                'SHAMSHEER', 'GORU', 'CHANDAN', 'IRFAN', 'YUSUF',
-                'SHAFU', 'SIRAJ', 'JAI KUMAR', 'ALTAF', 'JILAN'
-            ],
-            'TIPPU FIGHTERS': [
-                'FIRDOS', 'ANJUM', 'SYED KAZIM', 'INJUMAM ULLAK', 'SYED KAIF',
-                'YAKEEN', 'IMRAN T', 'UMRAZ', 'YARAB', 'WASIM',
-                'AFROZ', 'SAAD', 'RIZWAN PASHA', 'SYED JUNAID', 'ZAMEER'
+            'ROYAL TITANS': [
+                'INJUMAM ULLAK', 'MOHSIN PASHA', 'SACHIN GOWDA', 'SHAFU', 'SALIM',
+                'CHANDAN', 'ANAND', 'YASIN', 'NAYAZ', 'ALEEM',
+                'JILAN', 'TABREZ', 'NITHIN K', 'IMRAN T'
             ],
             'ROYAL SULTHANS': [
-                'FAYAZ', 'MUJJU', 'SYED NIZAM', 'DHARMA', 'MANJU G',
-                'PARVEEZ', 'IMRAN B', 'NITHIN', 'MANJA BULLET', 'SYED KHAJA',
-                'TALIB', 'TANNU', 'AMAR GOWDA', 'SYED NAVEED', 'SYED HARIS', 'SALMAN'
+                'FAYAZ', 'MUJJU', 'MANJU', 'SYED DOULATH', 'TANNU',
+                'MADHU UNCLE', 'NIZAM C', 'PARVEEZ', 'MANSOOR B', 'RAZBI',
+                'NAVEED', 'HARIS', 'SYED BABAR', 'SADIQ'
+            ],
+            'TIPPU FIGHTERS': [
+                'FIRDOUS PASHA', 'YARAB', 'KAZIM', 'FAIZ', 'YAKEEN PASHA',
+                'RIZWAN', 'WASIM', 'KHAJA', 'TALIB', 'ASIF',
+                'KHALANDAR', 'CHIKKU', 'ZABI', 'YUNUS SALIM'
+            ],
+            'DECCAN FIGHTERS': [
+                'IMRAN K', 'ROSHAN B', 'UMRAZ', 'ADDU', 'SYED KAIF',
+                'IMRAN B', 'KULLU', 'AZHAR ALI', 'AMANU', 'AMAR GOWDA',
+                'AFROZ', 'SADIQ ALI', 'SHAMEER'
             ],
             'SULTHANS STRIKERS': [
-                'SADIQ', 'CHAND BHAI', 'UMRAZ', 'KHALANDAR', 'MUZAMMIL',
-                'CHAND PASHA M', 'NIZAM BT', 'SHOIB', 'SYED DOULATH', 'AFNAN',
-                'AZHAR', 'ZABI', 'MANSOOR BAIG', 'ANAND ANNA', 'BABAR'
-            ],
-            'ROYAL TITANS': [
-                'MOHSIN', 'SACHIN', 'SALIM', 'TABREZ', 'MANSOOR PASHA',
-                'NAYAZ', 'ADDU', 'FAKRU', 'YASEEN', 'RAZBI',
-                'SHABAZ', 'FAIZ', 'ASIF', 'RIYAZ', 'ZABI CHIT'
+                'SADIQ', 'CHAND BHAI', 'CHAND BHAI MEK', 'ANJUM ALI', 'SYED IRFAN',
+                'SYED FAKRU', 'SYED BABAJAN', 'NITHIN CHARLI', 'SHABAZ', 'SIRAJ',
+                'SALMAN', 'NIZAM BAT', 'JAI KUMAR', 'ZAMEER', 'ZABI AUTO'
             ]
         };
 
-        let currentTeam = 'DECCAN FIGHTERS';
+        let currentTeam = 'ROYAL TITANS';
         let defaultPlayers = teamsData[currentTeam];
         let selectedPlayers = [];
 
@@ -923,7 +923,7 @@
         // Initialize mobile view on load
         window.addEventListener('DOMContentLoaded', function() {
             if (window.innerWidth <= 768) {
-                loadMobilePlayers('DECCAN FIGHTERS');
+                loadMobilePlayers('ROYAL TITANS');
             } else {
                 initPlayersList();
             }
